@@ -18,12 +18,18 @@ def hello():
 def root():
     return listing('')
 
+@app.route('/favicon.ico')
+@app.route('/favicon.ico/')
+def favico():
+    return ''
+
 
 @app.route('/play/<path:filename>', methods=(['GET']))
 def play(filename):
     path = os.path.join(BASE_DIR, filename)
     if os.path.exists(path):
         player.play(path)
+        print(f'Playing file: {path}')
         return 'OK'
     return 'File Not Found'
 
