@@ -1,0 +1,42 @@
+*
+  box-sizing: border-box
+
+body, html
+  margin: 0
+  padding: 0
+  width: 100%
+  height: 100%
+
+body 
+  background: white
+
+section.content
+  width: 100%
+  max-width: 1200px
+  height: 100%
+  background: red
+  margin: 0 auto
+
+  h1
+    margin: 0
+    padding: 12px
+    background: blue
+
+  div.listing
+    display: flex
+    flex-wrap: wrap
+    // justify-content: space-evenly
+    padding: 5px
+
+    a
+      list-style-type: none
+      width: 200px
+      height: 120px
+      margin: 5px
+      padding: 20px
+      border-radius: 10px
+      background: white
+
+      &.item
+        background: gray
+
