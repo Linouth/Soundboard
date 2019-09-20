@@ -2,13 +2,12 @@ import os
 from flask import Flask, render_template
 import mpv
 
+
 app = Flask(__name__, instance_relative_config=True)
 player = mpv.MPV()
 
-try:
-    os.makedirs(app.instance_path)
-except OSError:
-    pass
+BASE_DIR = 'sounds'
+
 
 @app.route('/hello')
 def hello():
@@ -22,10 +21,9 @@ def root():
 
 @app.route('/play/<path:filename>', methods=(['GET']))
 def play(filename):
-    print(filename)
-    path = os.path.join(app.instance_path, filename)
+    path = os.path.join(BASE_DIR, filename)
     if os.path.exists(path):
-        # player.play(path)
+        player.play(path)
         return 'OK'
     return 'File Not Found'
 
@@ -34,7 +32,7 @@ def play(filename):
 def listing(directory):
     files = []
     dirs = []
-    path = os.path.join(os.path.relpath(app.instance_path), directory)
+    path = os.path.join(os.path.relpath(BASE_DIR), directory)
     for c in os.listdir(path):
         cpath = os.path.join(path, c)
         if os.path.isdir(cpath):
@@ -42,4 +40,11 @@ def listing(directory):
         else:
             files.append(os.path.relpath(cpath, path))
 
-    return render_template('index.html', files=sorted(files), dirs=sorted(dirs))
+    return render_template('index.html', current_dir=directory, files=sorted(files), dirs=sorted(dirs))
+
+
+if __name__ == '__main__':
+    if os.path.isdir(BASE_DIR):
+        app.run(host='0.0.0.0')
+    else:
+        print(f'Directory {BASE_DIR} not found')

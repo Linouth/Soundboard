@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ current_dir }}/{% endblock %}
 {% block header %}
-    <h1>Test</h1>
+    <h1>{{ current_dir }}/ - Soundboard</h1>
 {% endblock %}
 
 {% block content %}
     <!-- <h3>Directories:</h3> -->
     <div id='directories' class='listing'>
     {% for d in dirs %}
-    <a class='dir' href='{{ d }}/'>{{ d }}</a>
+        <a class='dir' href='{{ d }}/'><p>{{ d }}</p></a>
     {% endfor %}
-    </div>
-
-    <hr/>
+    <!-- </div> -->
 
     <!-- <h3>Files:</h3> -->
-    <div id='items' class='listing'>
+    <!-- <div id='items' class='listing'> -->
     {% for f in files %}
-        <a id='item' class='item' href='#'>{{ f }}</a>
+        <a id='item' class='item' href='#'><p>{{ f }}</p></a>
     {% endfor %}
     </div>
 {% endblock %}
