@@ -1,21 +1,28 @@
-$item_width: 220px
-$item_height: 120px
-$item_margin: 10px
-$item_padding: 10px
+// Responsive settings
+$item_width:            220px
+$item_height:           120px
+$item_margin:           10px
+$item_padding:          10px
 
-$item_width_phone: 200px
-$item_height_phone: 120px
-$item_margin_phone: 5px
-$item_padding_phone: 5px
+$item_width_phone:      200px
+$item_height_phone:     120px
+$item_margin_phone:     5px
+$item_padding_phone:    5px
 
+// Breakpoints
+$width_pc:          $item_padding*2 + ($item_width + $item_margin*2)*5
+$width_pc_small:    $item_padding*2 + ($item_width + $item_margin*2)*4
+$width_tablet:      $item_padding*2 + ($item_width + $item_margin*2)*3
+$width_phone:       $item_padding_phone*2 + ($item_width_phone + $item_margin_phone*2)*2
+
+
+// Colors:
 $background:        #292929
 $dark:              #121212
 $black:             #000
 $foreground:        #fff
-// $primary:           #3a158f
 $primary:           #5c26d9
-$primary_bright:    #4115a8
-// $primary_bright:    #3700B3
+$primary_dark:      #4115a8
 $error:             #CF6679
 
 
@@ -46,19 +53,19 @@ section.content
     color: $foreground
 
   div.listing
-    width: $item_padding*2 + ($item_width + $item_margin*2)*5
+    width: $width_pc
     margin: 0 auto
     display: flex
     flex-wrap: wrap
     // justify-content: space-evenly
     padding: $item_padding
 
-    @media screen and (max-width: 1160px)
-      width: $item_padding*2 + ($item_width + $item_margin*2)*4
-    @media screen and (max-width: 930px)
-      width: $item_padding*2 + ($item_width + $item_margin*2)*3
-    @media screen and (max-width: 700px)
-      width: $item_padding_phone*2 + ($item_width_phone + $item_margin_phone*2)*2
+    @media screen and (max-width: $width_pc)
+      width: $width_pc_small
+    @media screen and (max-width: $width_pc_small)
+      width: $width_tablet
+    @media screen and (max-width: $width_tablet)
+      width: $width_phone
       padding: $item_padding_phone
       
 
@@ -77,7 +84,7 @@ section.content
       &:visited
         text-color: $foreground
 
-      @media screen and (max-width: 700px)
+      @media screen and (max-width: $width_tablet)
         width: $item_width_phone
         height: $item_height_phone
         margin: $item_margin_phone
@@ -94,5 +101,5 @@ section.content
         background: $primary
 
         &:hover
-          background: $primary_bright
+          background: $primary_dark
 
